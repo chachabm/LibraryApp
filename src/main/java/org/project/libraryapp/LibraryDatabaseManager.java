@@ -1,10 +1,15 @@
 package org.project.libraryapp;
 
+import javafx.collections.ObservableList;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javafx.collections.FXCollections;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LibraryDatabaseManager {
     public static final String URL = "jdbc:mysql://localhost:3306/libraryappdb";
@@ -14,7 +19,7 @@ public class LibraryDatabaseManager {
     // Load MySQL JDBC Driver
     static {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             System.out.println("MySQL JDBC Driver Registered!");
         } catch (ClassNotFoundException e) {
             System.out.println("MySQL JDBC Driver not found.");
@@ -236,5 +241,17 @@ public class LibraryDatabaseManager {
             stmt.executeUpdate();
             System.out.println("Loan deleted.");
         }
+    }
+    public static ObservableList<User> getAllUsers() throws SQLException {
+        ObservableList<User> userList = FXCollections.observableArrayList();
+        String sql = "SELECT * FROM Users";
+        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                String username = rs.getString("username");
+                User user = new User(username);
+                userList.add(user);
+            }
+        }
+        return userList;
     }
 }
