@@ -5,16 +5,20 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+    public static Library libraryUI;
+    public static BooksUI booksUI;
+    public static LoginUI loginUI;
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Library Management System");
 
         // Instantiate the library and the BooksUI
-        Library library = new Library();
-        BooksUI booksUI = new BooksUI(library);
+        libraryUI = new Library();
+        booksUI = new BooksUI(libraryUI);
+        loginUI = new LoginUI(primaryStage);
 
         // Create the scene and set it on the stage
-        Scene scene = booksUI.createScene();
+        Scene scene = loginUI.createScene();
         primaryStage.setScene(scene);
         primaryStage.setTitle("Manage Books");
         primaryStage.show();

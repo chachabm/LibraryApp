@@ -32,9 +32,9 @@ public class LoginUI {
             if (selectedUser != null) {
                 loginFeedback.setText("Logged in as " + selectedUser);
                 // Open UsersUI Scene
-                UsersUI usersUI = new UsersUI();
-                Scene userScene = usersUI.createScene();
-                primaryStage.setScene(userScene);
+                MainMenuUI mainMenuUI = new MainMenuUI(Main.libraryUI, primaryStage);
+                Scene MainMenuScene = mainMenuUI.getScene();
+                primaryStage.setScene(MainMenuScene);
                 primaryStage.setTitle("Library Management System");
             } else {
                 loginFeedback.setText("Please select a user to login.");
