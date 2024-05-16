@@ -34,7 +34,7 @@ public class MainMenuUI {
         layout.getChildren().addAll(usersButton, booksButton);
 
         // Create scene
-        scene = new Scene(layout, 400, 300);
+        scene = new Scene(layout, 800, 600);
     }
 
     public Scene getScene() {

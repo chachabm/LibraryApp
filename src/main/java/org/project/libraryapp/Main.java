@@ -20,11 +20,11 @@ public class Main extends Application {
         // Create the scene and set it on the stage
         Scene scene = loginUI.createScene();
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Manage Books");
         primaryStage.show();
     }
 
     public static void main(String[] args) {
+
         launch(args);
     }
 }

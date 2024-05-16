@@ -32,7 +32,7 @@ public class LibraryDatabaseManager {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 
-    // CRUD operations for User
+    // CRUD operations for User create
     public static void createUser(String username) throws SQLException {
         String sql = "INSERT INTO Users (username) VALUES (?)";
         try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {

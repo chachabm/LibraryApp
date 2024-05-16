@@ -78,7 +78,7 @@ public class BooksUI {
         layout.setPadding(new Insets(10));
         layout.setAlignment(Pos.CENTER);
 
-        return new Scene(layout, 600, 400);
+        return new Scene(layout, 800, 600);
     }
 
     private void addBook() {

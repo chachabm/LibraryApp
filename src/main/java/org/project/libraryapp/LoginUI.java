@@ -2,6 +2,7 @@ package org.project.libraryapp;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
@@ -42,6 +43,7 @@ public class LoginUI {
         });
 
         VBox vBox = new VBox();
+        vBox.setAlignment(Pos.CENTER);
         vBox.getChildren().addAll(selectUserLabel, userComboBox, loginButton, loginFeedback);
 
         return new Scene(vBox, 800, 600);
