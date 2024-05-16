@@ -61,9 +61,13 @@ class User implements LibraryMember {
         return username;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     @Override
     public void displayInfo() {
-        System.out.println("org.example.libraryapp.User: " + username);
+
     }
 }
 
