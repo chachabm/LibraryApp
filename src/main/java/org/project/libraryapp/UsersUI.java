@@ -28,8 +28,9 @@ public class UsersUI {
         Label userLabel = new Label("Username:");
         TextField userTextField = new TextField();
         Button addUserButton = new Button("Add User");
+
         GetUsers(data, userFeedback);
-        //Add callback action to button
+
         addUserButton.setOnAction(actionEvent -> {
             String user = userTextField.getText();
             try {
@@ -43,8 +44,7 @@ public class UsersUI {
             }
         });
 
-        //Setting the Vertical box for the Interface
-        VBox vBox = new VBox();
+        VBox vBox = new VBox(10); // Add spacing between elements
         vBox.getChildren().addAll(userLabel, userTextField, addUserButton, userFeedback, tableView);
 
         // Create a scene with the TableView

@@ -254,4 +254,36 @@ public class LibraryDatabaseManager {
         }
         return userList;
     }
+
+    public static int getMediaIdByTitleAndYear(String title, int year) throws SQLException {
+        String sql = "SELECT mediaId FROM Media WHERE title = ? AND year = ?";
+        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, title);
+            stmt.setInt(2, year);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("mediaId");
+                } else {
+                    throw new SQLException("Media not found.");
+                }
+            }
+        }
+    }
+    public static ObservableList<BookWrapper> getAllBooks() throws SQLException {
+        ObservableList<BookWrapper> bookList = FXCollections.observableArrayList();
+        String sql = "SELECT * FROM Books b JOIN Media m ON b.mediaId = m.mediaId";
+
+        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                int mediaId = rs.getInt("b.mediaId");
+                String title = rs.getString("m.title");
+                String year = rs.getString("m.year");
+                String author = rs.getString("b.author");
+
+                // Create a BookWrapper object and add it to the list
+                bookList.add(new BookWrapper(title, year, author));
+            }
+        }
+        return bookList;
+    }
 }

@@ -9,12 +9,14 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Library Management System");
 
-        // Instantiate UIManager and set up the UI
-        UsersUI usersUi = new UsersUI();
-        Scene scene = usersUi.createScene();
+        // Instantiate the library and the BooksUI
+        Library library = new Library();
+        BooksUI booksUI = new BooksUI(library);
 
+        // Create the scene and set it on the stage
+        Scene scene = booksUI.createScene();
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Library Management System");
+        primaryStage.setTitle("Manage Books");
         primaryStage.show();
     }
 
